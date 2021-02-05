@@ -42,12 +42,17 @@ namespace CalculatorProject.Tests
 
             Calculator _calculator = new Calculator(_a, _b, _action);
 
-            var _result = _calculator.Calculation[0].GetResults();
+            var _result = _calculator.Calculation[0].GetResult();
             _action = "division";
 
             _calculator.CreateCalculation(_a, _b, _action);
 
-            _result = _calculator.Calculation[1].GetResults();
+            _result = _calculator.Calculation[1].GetResult();
+
+            _calculator.Calculation.ForEach(delegate (Calculation calculation)
+            {
+                Console.WriteLine(calculation.GetResult());
+            });
         }
 
 
