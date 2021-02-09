@@ -6,12 +6,16 @@ using System.Text;
 using CalculatorProject.CalculatorFunctions;
 using CalculatorProject.Models;
 using System.Reflection;
+using CalculatorProject.CalculatorFunctions;
 
 namespace CalculatorProject.Tests
 {
+    
+
     [TestClass()]
     public class CalculatorTests
     {
+        
         [TestMethod()]
         public void CalculatorTest()
         {
@@ -34,25 +38,39 @@ namespace CalculatorProject.Tests
             Assert.AreEqual(_c, 3);
         }
         [TestMethod()]
-        public void CalculationTest()
+        public void CalculatorIntantiationWithParametersTest()
         {
             double _a = 1;
             double _b = 2;
-            string _action = "multiplication";
+            Func<double, double, double> _operations = Operations.Multiplication;
 
-            Calculator _calculator = new Calculator(_a, _b, _action);
+            Calculator _calculator = new Calculator(_a, _b, _operations);
+            double _result = _calculator.Calculations[0].GetResult();
+            Assert.AreEqual(2, _result);
+        }
+        [TestMethod()]
+        public void CreateCalculationTest()
+        {
+            double _a = 1;
+            double _b = 2;
+            Func<double, double, double> _operations = Operations.Multiplication;
+            Calculator _calculator = new Calculator();
+            _calculator.CreateCalculation(_a, _b, _operations);
+            _operations = Operations.Division;
+            _calculator.CreateCalculation(_a, _b, _operations);
 
-            var _result = _calculator.Calculation[0].GetResult();
-            _action = "division";
+            
+            Assert.AreEqual(2, _calculator.Calculations[0].GetResult());
+            Assert.AreEqual(.5, _calculator.Calculations[1].GetResult());
 
-            _calculator.CreateCalculation(_a, _b, _action);
+            /*the delegate is run in the foreach
+            _calculator.Calculations.ForEach(delegate (Calculation calculation)
+            {             
+                Assert.AreEqual(2, calculation.GetResult());  
+       
 
-            _result = _calculator.Calculation[1].GetResult();
-
-            _calculator.Calculation.ForEach(delegate (Calculation calculation)
-            {
-                Console.WriteLine(calculation.GetResult());
             });
+            */
         }
 
 

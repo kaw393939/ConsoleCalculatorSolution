@@ -15,9 +15,11 @@ namespace CalculatorProject.Models
         {
             A = a;
             B = b;
+            //this stores the operation to be performed on A and B
             Operation = calculation;
         }
 
+        //This calls whatever operation was stored i.e. mult, div, add, sub and returns the answer
         public double GetResult()
         {
             return Operation(A, B);
