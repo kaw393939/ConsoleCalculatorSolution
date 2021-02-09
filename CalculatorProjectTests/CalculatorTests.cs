@@ -68,7 +68,6 @@ namespace CalculatorProject.Tests
             {             
                 Assert.AreEqual(2, calculation.GetResult());  
        
-
             });
             */
         }
