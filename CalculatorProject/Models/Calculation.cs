@@ -9,7 +9,10 @@ namespace CalculatorProject.Models
     {
         public double A { get; set; }
         public double B { get; set; }
+        public List<double> ListOfValues {get; set;}
         public Func<double,double,double> Operation { get; set; }
+        public Func<List<double>, double> BulkOperation { get; set; }
+
 
         public Calculation(double a, double b, Func<double,double,double> calculation)
         {
@@ -18,11 +21,24 @@ namespace CalculatorProject.Models
             //this stores the operation to be performed on A and B
             Operation = calculation;
         }
+        public Calculation(List<double> listOfValues, Func<List<double>,double> calculation)
+        {
+            ListOfValues = listOfValues;
 
+            //this stores the operation to be performed on A and B
+            BulkOperation = calculation;
+        }
         //This calls whatever operation was stored i.e. mult, div, add, sub and returns the answer
         public double GetResult()
         {
-            return Operation(A, B);
+            if(BulkOperation != null)
+            {
+                return BulkOperation(ListOfValues);
+            } else
+            {
+                return Operation(A, B);
+            }
+            
 
         }
     }

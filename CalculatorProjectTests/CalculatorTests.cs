@@ -6,7 +6,6 @@ using System.Text;
 using CalculatorProject.CalculatorFunctions;
 using CalculatorProject.Models;
 using System.Reflection;
-using CalculatorProject.CalculatorFunctions;
 
 namespace CalculatorProject.Tests
 {
@@ -71,8 +70,18 @@ namespace CalculatorProject.Tests
             });
             */
         }
+        [TestMethod()]
+        public void SumListTest()
+        {
+            List<double> _values = new List<double> { 1, 2, 3, 4, 5, 6 };
+
+            Func<List<double>, double> _operations = Operations.SumList;
+
+            Calculator _calculator = new Calculator();
+            _calculator.CreateCalculation(_values, _operations);
+            Assert.AreEqual(21, _calculator.Calculations[0].GetResult());
+        }
 
 
-
-    }
+        }
 }
