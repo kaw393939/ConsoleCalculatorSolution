@@ -50,9 +50,9 @@ namespace CalculatorProject.Tests
         [TestMethod()]
         public void CreateCalculationTest()
         {
-            double _a = 1;
+            double _a = 2;
             double _b = 2;
-            Func<double, double, double> _operations = Operations.Multiplication;
+            Func<double, double, double> _operations = Operations.Division;
             Calculator _calculator = new Calculator();
             _calculator.CreateCalculation(_a, _b, _operations);
             _operations = Operations.Division;
@@ -73,9 +73,10 @@ namespace CalculatorProject.Tests
         [TestMethod()]
         public void SumListTest()
         {
+            //initialize a new list of numbers
             List<double> _values = new List<double> { 1, 2, 3, 4, 5, 6 };
 
-            Func<List<double>, double> _operations = Operations.SumList;
+            Func<List<double>, double> _operations = ListOperations.SumList;
 
             Calculator _calculator = new Calculator();
             _calculator.CreateCalculation(_values, _operations);
